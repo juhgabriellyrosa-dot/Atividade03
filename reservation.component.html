@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Sistema de Reserva de Viagens</h1>
+
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    
+    <label>Destino:</label>
+    <select formControlName="destination">
+      <option value="">Selecione um destino</option>
+      <option value="Paris">Paris</option>
+      <option value="Nova York">Nova York</option>
+      <option value="Tóquio">Tóquio</option>
+      <option value="Rio de Janeiro">Rio de Janeiro</option>
+    </select>
+    <div *ngIf="reservationForm.get('destination')?.touched && reservationForm.get('destination')?.invalid" class="error">
+      Selecione um destino.
+    </div>
+
+
+    <label>Data de Ida:</label>
+    <input type="date" formControlName="departureDate" />
+    <div *ngIf="reservationForm.get('departureDate')?.touched && reservationForm.get('departureDate')?.invalid" class="error">
+      Selecione a data de ida.
+    </div>
+
+    
+    <label>Data de Volta:</label>
+    <input type="date" formControlName="returnDate" />
+    <div *ngIf="reservationForm.get('returnDate')?.touched && reservationForm.get('returnDate')?.invalid" class="error">
+      Selecione a data de volta.
+    </div>
+
+   
+    <label>Número de Passageiros:</label>
+    <input type="number" formControlName="passengers" />
+    <div *ngIf="reservationForm.get('passengers')?.touched && reservationForm.get('passengers')?.invalid" class="error">
+      O número de passageiros deve estar entre 1 e 5.
+    </div>
+
+   
+    <label>E-mail de Contato:</label>
+    <input type="email" formControlName="email" />
+    <div *ngIf="reservationForm.get('email')?.touched && reservationForm.get('email')?.invalid" class="error">
+      Insira um e-mail válido.
+    </div>
+
+    <!-- Botão -->
+    <button type="submit" [disabled]="reservationForm.invalid">Enviar Reserva</button>
+  </form>
+</div>
+
